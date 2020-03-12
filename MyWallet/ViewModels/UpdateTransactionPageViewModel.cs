@@ -84,12 +84,12 @@ namespace MyWallet.ViewModels
         {
             if (Currency == null)
             {
-                Console.WriteLine("Please select one Currency");
+                await UserDialogs.AlertAsync("Please select one Currency");
                 return;
             }
             if (Amount == 0)
             {
-                Console.WriteLine("Please fill the amount field");
+                await UserDialogs.AlertAsync("Please fill the amount field");
                 return;
             }
 
