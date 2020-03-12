@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MyWallet.Views.HomePage"
+             BackgroundImageSource="https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
+            <Image Source="https://peoplegroupservices.com/wp-content/uploads/2019/11/MyWallet.png" HeightRequest="70" VerticalOptions="Start" Margin="10"/>
+            
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0">
+                
+                
+                <CollectionView ItemsSource="{Binding Balances}" SelectionMode="None">
+                    <CollectionView.Header>
+                        <Label Text="Balance" FontSize="Subtitle" TextColor="#E7385B" Padding="5,0" BackgroundColor="#66FFFFFF"/>
+                    </CollectionView.Header>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label Text="Your wallet is empty"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="5,2">
+                                <Label Text="{Binding Symbol}" TextColor="Black"/>
+                                <Label Text="{Binding Amount, StringFormat='{0:F2}'}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    
+                </CollectionView>
+                
+            </StackLayout>
+            
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="10">
+                <Button Text="Add money" Command="{Binding AddMoneyCommand}" TextColor="Black"/>
+                <Button Text="Remove money" Command="{Binding RemoveMoneyCommand}" TextColor="Black"/>
+                <Button Text="See details" Command="{Binding SeeDetailsCommand}" TextColor="Black"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
