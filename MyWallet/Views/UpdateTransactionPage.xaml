@@ -8,6 +8,9 @@
         <Grid>
             <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg"/>
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
+                <StackLayout.Effects>                    
+                    <effect:SafeAreaPaddingEffect />                
+                </StackLayout.Effects>
                 <Label Text="Update Transaction" FontSize="Title" FontAttributes="Bold" TextColor="#E7385B"/>
 
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
