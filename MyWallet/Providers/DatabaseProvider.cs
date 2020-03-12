@@ -9,22 +9,20 @@ namespace MyWallet.Providers
     {
         public string DatabasePath { get; set; }
         public string DatabaseName { get; set; }
-        private SQLiteConnection _dbConnection { get; set; }
+        public SQLiteConnection DBConnection { get; private set; }
 
         public DatabaseProvider(string dbName)
         {
             DatabaseName = dbName;
             InitDatabase();
-        }
-
-        public SQLiteConnection DBConnection => _dbConnection;
+        }        
 
         private void InitDatabase()
         {
             try
             {
                 DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseName);
-                _dbConnection = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex);
+                DBConnection = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex);
             }
             catch (Exception ex)
             {
@@ -38,7 +36,7 @@ namespace MyWallet.Providers
             //create tables if they don't exist
             try
             {
-                CreateTableResult result = _dbConnection.CreateTable<TransactionModel>();
+                var result = DBConnection.CreateTable<TransactionModel>();
             }
             catch (Exception ex)
             {

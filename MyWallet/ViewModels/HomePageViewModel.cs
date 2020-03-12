@@ -17,7 +17,7 @@ namespace MyWallet.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
-        protected TransactionController _transactionController { get; }
+        protected TransactionController TransactionController { get; }
 
         public ICommand AddMoneyCommand { get; }
         public ICommand RemoveMoneyCommand { get; }
@@ -34,7 +34,7 @@ namespace MyWallet.ViewModels
                                  IUserDialogs userDialogs,
                                  TransactionController transactionController) : base(navigationService, userDialogs)
         {
-            _transactionController = transactionController;
+            TransactionController = transactionController;
 
             AddMoneyCommand = new DelegateCommand(async () => await AddMoney());
             RemoveMoneyCommand = new DelegateCommand(async () => await RemoveMoney());
@@ -49,13 +49,11 @@ namespace MyWallet.ViewModels
         private void LoadBalances()
         {            
             Balances = new ObservableCollection<BalanceModel>();
-            var Transactions = _transactionController.LoadAllTransactions();
+            var transactions = TransactionController.LoadAllTransactions();
 
-            foreach (var currency in Transactions.GroupBy(t => t.Symbol))
+            foreach (var currency in transactions.GroupBy(t => t.Symbol))
             {
-                var totalAmount = Transactions.Where(t => t.Symbol == currency.Key).Sum(t => t.Amount);
-
-                Console.WriteLine($"{currency.Key}: {totalAmount}");
+                var totalAmount = transactions.Where(t => t.Symbol == currency.Key).Sum(t => t.Amount);
                 Balances.Add(new BalanceModel() { Symbol = currency.Key, Amount = totalAmount });
             }
         }

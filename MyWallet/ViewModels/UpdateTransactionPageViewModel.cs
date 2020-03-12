@@ -15,8 +15,8 @@ namespace MyWallet.ViewModels
 {
     public class UpdateTransactionPageViewModel : ViewModelBase
     {
-        protected TransactionController _transactionController { get; }
-        protected CurrencyController _currencyController { get; }
+        protected TransactionController TransactionController { get; }
+        protected CurrencyController CurrencyController { get; }
 
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
@@ -55,8 +55,8 @@ namespace MyWallet.ViewModels
                                      TransactionController transactionController,
                                      CurrencyController currencyController) : base(navigationService, userDialogs)
         {
-            _transactionController = transactionController;
-            _currencyController = currencyController;
+            TransactionController = transactionController;
+            CurrencyController = currencyController;
 
             SaveCommand = new DelegateCommand(async () => await Save());
             CancelCommand = new DelegateCommand(async () => await Cancel());
@@ -72,7 +72,7 @@ namespace MyWallet.ViewModels
             }
 
             ShowLoading();
-            Currencies = new ObservableCollection<CurrencyModel>(await _currencyController.LoadCurrenciesAsync());
+            Currencies = new ObservableCollection<CurrencyModel>(await CurrencyController.LoadCurrenciesAsync());
             TransactionModel = transactionModel;
 
             Amount = TransactionModel.Amount;
@@ -96,7 +96,7 @@ namespace MyWallet.ViewModels
             TransactionModel.Symbol = Currency.Symbol;
             TransactionModel.Amount = Amount;
 
-            var result = _transactionController.UpdateTransaction(TransactionModel);
+            var result = TransactionController.UpdateTransaction(TransactionModel);
             await UserDialogs.AlertAsync("Transaction successfully updated!");
             await NavigationService.GoBackAsync();
         }
@@ -105,11 +105,11 @@ namespace MyWallet.ViewModels
         {
             if (TransactionModel == null)
             {
-                await UserDialogs.AlertAsync("Transaction not detected!");
+                await UserDialogs.AlertAsync("Transaction not detected!");  
                 return;
             }
 
-            _transactionController.RemoveTransaction(TransactionModel);
+            TransactionController.RemoveTransaction(TransactionModel);
             await UserDialogs.AlertAsync("Transaction successfully removed!");
             await NavigationService.GoBackAsync();
         }

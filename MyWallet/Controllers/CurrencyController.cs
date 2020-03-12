@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MyWallet.Models;
-using MyWallet.Providers;
 using Newtonsoft.Json;
-using Xamarin.Forms;
 
 namespace MyWallet.Controllers
 {

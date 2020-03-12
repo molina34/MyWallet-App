@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using SQLite;
 
 namespace MyWallet.Models

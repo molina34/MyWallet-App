@@ -14,8 +14,8 @@ namespace MyWallet.ViewModels
 {
     public class AddMoneyPageViewModel : ViewModelBase
     {
-        protected TransactionController _transactionController { get; }
-        protected CurrencyController _currencyController { get; }
+        protected TransactionController TransactionController { get; }
+        protected CurrencyController CurrencyController { get; }
 
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
@@ -46,8 +46,8 @@ namespace MyWallet.ViewModels
                                      TransactionController transactionController,
                                      CurrencyController currencyController) : base(navigationService, userDialogs)
         {
-            _transactionController = transactionController;
-            _currencyController = currencyController;
+            TransactionController = transactionController;
+            CurrencyController = currencyController;
 
             SaveCommand = new DelegateCommand(async () => await Save());
             CancelCommand = new DelegateCommand(async () => await Cancel());
@@ -56,7 +56,7 @@ namespace MyWallet.ViewModels
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             ShowLoading();
-            Currencies = new ObservableCollection<CurrencyModel>(await _currencyController.LoadCurrenciesAsync());
+            Currencies = new ObservableCollection<CurrencyModel>(await CurrencyController.LoadCurrenciesAsync());
             HideLoading();
         }
 
@@ -80,7 +80,7 @@ namespace MyWallet.ViewModels
                 Amount = Amount
             };
 
-            var result = _transactionController.AddTransaction(transaction);
+            var result = TransactionController.AddTransaction(transaction);
             await UserDialogs.AlertAsync("Transaction successfully registered!");
             await NavigationService.GoBackAsync();
         }
