@@ -67,6 +67,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Effects\SafeAreaPaddingEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -134,5 +135,10 @@
       <Project>{30B4D4E4-068D-40B5-B726-0AD75C0C98F5}</Project>
       <Name>MyWallet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Effects\">
+      <DependentUpon>Effects</DependentUpon>
+    </Folder>
   </ItemGroup>
 </Project>

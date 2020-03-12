@@ -20,19 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\">
-      <DependentUpon>Views</DependentUpon>
     </Folder>
     <Folder Include="ViewModels\">
-      <DependentUpon>ViewModels</DependentUpon>
     </Folder>
     <Folder Include="Controllers\">
-      <DependentUpon>Controllers</DependentUpon>
     </Folder>
     <Folder Include="Providers\">
-      <DependentUpon>Providers</DependentUpon>
     </Folder>
     <Folder Include="Models\">
-      <DependentUpon>Models</DependentUpon>
+    </Folder>
+    <Folder Include="Effects\">
+      <DependentUpon>Effects</DependentUpon>
     </Folder>
   </ItemGroup>
 </Project>

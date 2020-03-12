@@ -2,14 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="MyWallet.Views.HomePage"
-             BackgroundImageSource="https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg">
+             xmlns:effect="clr-namespace:MyWallet.Effects"
+             x:Class="MyWallet.Views.HomePage">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
-            <Image Source="https://peoplegroupservices.com/wp-content/uploads/2019/11/MyWallet.png" HeightRequest="70" VerticalOptions="Start" Margin="10"/>
-            
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0">
-                
+        <Grid>
+            <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
+                <StackLayout.Effects>                    
+                    <effect:SafeAreaPaddingEffect />                
+                </StackLayout.Effects>
+
+                <Image Source="https://peoplegroupservices.com/wp-content/uploads/2019/11/MyWallet.png" HeightRequest="70" VerticalOptions="Start" Margin="10"/>            
                 
                 <CollectionView ItemsSource="{Binding Balances}" SelectionMode="None">
                     <CollectionView.Header>
@@ -18,8 +21,8 @@
                     <CollectionView.EmptyView>
                         <StackLayout>
                             <Label Text="Your wallet is empty"
-                                   HorizontalOptions="Fill"
-                                   HorizontalTextAlignment="Center" />
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center" />
                         </StackLayout>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
@@ -41,6 +44,6 @@
                 <Button Text="See details" Command="{Binding SeeDetailsCommand}" TextColor="Black"/>
             </StackLayout>
 
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

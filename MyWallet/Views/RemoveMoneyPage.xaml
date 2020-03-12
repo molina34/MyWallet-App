@@ -2,21 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="MyWallet.Views.RemoveMoneyPage"
-             BackgroundImageSource="https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg">
+             xmlns:effect="clr-namespace:MyWallet.Effects"
+             x:Class="MyWallet.Views.RemoveMoneyPage">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
-            <Label Text="Remove Money" FontSize="Title" FontAttributes="Bold" TextColor="#E7385B"/>
+        <Grid>
+            <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="https://i.pinimg.com/originals/e4/5f/54/e45f54e2cc5516e2210c34453db5ab6e.jpg"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20" Spacing="20">
+                <StackLayout.Effects>                    
+                    <effect:SafeAreaPaddingEffect />                
+                </StackLayout.Effects>
+                <Label Text="Remove Money" FontSize="Title" FontAttributes="Bold" TextColor="#E7385B"/>
 
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
-                <Picker ItemsSource="{Binding Currencies}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Currency, Mode=TwoWay}" Title="Currency"/>
-                <Entry Text="{Binding Amount, Mode=TwoWay}" Placeholder="Amount" Keyboard="Numeric"/>
-            </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+                    <Picker ItemsSource="{Binding Currencies}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Currency, Mode=TwoWay}" Title="Currency"/>
+                    <Entry Text="{Binding Amount, Mode=TwoWay}" Placeholder="Amount" Keyboard="Numeric"/>
+                </StackLayout>
 
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="10">
-                <Button Text="Save" TextColor="Black" Command="{Binding SaveCommand}"/>
-                <Button Text="Cancel" TextColor="Black" Command="{Binding CancelCommand}"/>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="10">
+                    <Button Text="Save" TextColor="Black" Command="{Binding SaveCommand}"/>
+                    <Button Text="Cancel" TextColor="Black" Command="{Binding CancelCommand}"/>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
